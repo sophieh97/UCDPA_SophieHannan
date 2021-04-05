@@ -1,7 +1,7 @@
 import pandas as pd
 
-def importdata(filename):
-    data=pd.read_csv("XYZ Company/employee_survey_data.csv")
+def import_data(filename):
+    data = pd.read_csv("XYZ Company/employee_survey_data.csv")
     print(data)
     print(data.head())
     print(data.info())
@@ -11,8 +11,5 @@ def importdata(filename):
     print(data.index)
     return data
 
-data=importdata("XYZ Company/employee_survey_data.csv")
 
-
-
-
+data = import_data("XYZ Company/employee_survey_data.csv")
