@@ -7,4 +7,18 @@
 #make sure aloy of values
 #one database multiple merges need
 
+data = import_data("XYZ Company/general_data.csv")
+data = import_data("XYZ Company/in_time.csv")
+data = import_data("XYZ Company/manager_survey_data.csv")
+data = import_data("XYZ Company/out_time.csv")
+
+manager_survey_dataset = sort_values(["EmployeeID"])
+
+# Select the state and family_members columns
+state_fam = homelessness[["state", "family_members"]]
+# Print the head of the result
+print(state_fam.head())
+
+#use this to reorder DF
+
 
