@@ -18,7 +18,26 @@ manager_survey_dataset = sort_values(["EmployeeID"])
 state_fam = homelessness[["state", "family_members"]]
 # Print the head of the result
 print(state_fam.head())
-
+manager_survey_dataset = data.set_index("EmployeeID").sort_index()
 #use this to reorder DF
+store_counts = store_types["type"].value_counts()
+print(store_counts)
+# Analysing Data: manager survey
+def groupby():
+    manager_survey_dataset = data.groupby(column)[column].sum
+    print(manager_survey_dataset.head())
+manager_survey_dataset = data.groupby("Department")["Attrition"].sum()
 
 
+# Analysing Data: manager survey
+def groupby(column):
+    manager_survey_dataset = data.groupby(column)
+    print(manager_survey_dataset.head())
+
+#find out how to reorder dataframe **
+#Change the Order of Dataframe: - reorder dataframe
+manager_survey_dataset = data.set_index("EmployeeID").sort_index()
+manager_survey_data = groupby("Department")
+print(manager_survey_dataset.head())
+# Change the Order of Dataframe:
+manager_survey_dataset = data.groupby("Department")["Attrition"].sum()
