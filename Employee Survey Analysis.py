@@ -55,7 +55,7 @@ my_dict(["EnvironmentSatisfaction","JobSatisfaction", "WorkLifeBalance"])
 value_counts("EnvironmentSatisfaction")
 value_counts("JobSatisfaction")
 value_counts("WorkLifeBalance")
-#check if employee ID still in it if not do separtely like below
+#check if employee ID still in it if not do separtely like below - think will have to do separte
 
 # Manager Survey Analysis
 data = import_data("XYZ Company/manager_survey_data.csv")
