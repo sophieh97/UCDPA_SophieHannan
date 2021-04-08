@@ -24,6 +24,19 @@ def clean_data(data):
     print(data.shape)
     return data
 
+# Rename Columns
+def rename(column):
+    rename = data.rename({column:"EmployeeID"}, axis=1, inplace=False)
+    print(rename.head())
+    return data
+
+# Data Drop in Timestamp
+def drop(columns):
+    drop = data.drop([columns], axis = 1, inplace=True)
+    print(drop.head())
+    return data
+
+
 # Sorting employee_survey from lowest to highest
 def sort_values(columns):
     sort_values = data.sort_values(columns)
@@ -46,8 +59,10 @@ def value_counts(columns):
     print(value_counts.isnull().sum())
     print(value_counts.head())
     return data
+# Need to remove isnull here when fixed
 
 
+# Employee Survey Data
 data = import_data("XYZ Company/employee_survey_data.csv")
 clean_data(data)
 sort_values(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
@@ -65,4 +80,19 @@ print(data.head())
 value_counts("JobInvolvement")
 value_counts("PerformanceRating")
 
+# Out Time
+data = import_data("XYZ Company/out_time.csv")
+clean_data(data)
+rename("Unnamed: 0")
+data.iloc[:, 1] = data.iloc[:, 1].apply(pd.to_datetime, errors = "coerce")
+print(data.head())
+#TOMORROW - Try drop dates in timestamps
+
+
 # In Time
+data = import_data("XYZ Company/in_time.csv")
+clean_data(data)
+rename("Unnamed: 0")
+data.iloc[:, 1] = data.iloc[:, 1].apply(pd.to_datetime, errors = "coerce")
+print(data.head())
+
