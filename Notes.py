@@ -14,6 +14,7 @@ data = import_data("XYZ Company/out_time.csv")
 
 manager_survey_dataset = sort_values(["EmployeeID"])
 
+see all columns - pd.set_option("display.max.columns", None)
 # Select the state and family_members columns
 state_fam = homelessness[["state", "family_members"]]
 # Print the head of the result

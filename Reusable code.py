@@ -35,10 +35,3 @@ sort_values(["JobInvolvement", "PerformanceRating"])
 
 # Importing and Inital Review of Data: general_data
 data = import_data("XYZ Company/general_data.csv")
-
-
-
-
-
-
-
