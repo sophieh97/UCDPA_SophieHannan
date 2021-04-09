@@ -35,3 +35,7 @@ sort_values(["JobInvolvement", "PerformanceRating"])
 
 # Importing and Inital Review of Data: general_data
 data = import_data("XYZ Company/general_data.csv")
+
+# Merge Data Code when fixed
+df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
+data = pd.merge(manager_survey_data, general_data, how="inner", on="EmployeeID")

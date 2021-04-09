@@ -30,8 +30,8 @@ def clean_data(data):
 
 # Rename Columns
 def rename(column):
-    rename = data.rename({column: "EmployeeID"}, axis=1, inplace=False)
-    print(rename.shape())
+    rename = data.rename({column: "EducationLevel"}, axis=1, inplace=False)
+    print(rename.shape)
     return data
 
 
@@ -64,6 +64,7 @@ def my_dict(columns):
     print(data.head())
     return data
 
+
 # Looping Iterrows
 def loop(data):
     for lab, row in data.iterrows():
@@ -92,6 +93,9 @@ value_counts("EnvironmentSatisfaction")
 value_counts("JobSatisfaction")
 value_counts("WorkLifeBalance")
 loop(data)
+employee_survey_data = data
+print(employee_survey_data.head())
+
 # Check if employee ID still in it if not do separtely like below - think will have to do separte
 
 # Manager Survey Analysis
@@ -103,6 +107,8 @@ print(data.head())
 value_counts("JobInvolvement")
 value_counts("PerformanceRating")
 loop(data)
+manager_survey_data = data
+print(manager_survey_data.head())
 
 # General data
 data = import_data("XYZ Company/general_data.csv")
@@ -112,7 +118,11 @@ data_drop("EmployeeCount")
 data_drop("StandardHours")
 data_drop("Over18")
 data_drop("MaritalStatus")
-value_counts("Department")
+rename("Education")
+data["Education_Level"] = data["Education_Level"].replace({1: "Below College", 2: "College", 3: "Bachelor", 4: "Master", 5: "Doctor"})
+value_counts(["Department","Attrition"])
 value_counts("Attrition")
 loop(data)
+general_data = data
+print(general_data.head())
 
