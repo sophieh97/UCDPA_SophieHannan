@@ -36,6 +36,9 @@ sort_values(["JobInvolvement", "PerformanceRating"])
 # Importing and Inital Review of Data: general_data
 data = import_data("XYZ Company/general_data.csv")
 
-# Merge Data Code when fixed
+# Merge Data Code when fixed - add when FIXED
 df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
 data = pd.merge(manager_survey_data, general_data, how="inner", on="EmployeeID")
+
+data["Education_Level"] = data["Education_Level"].replace({1: "Below College", 2: "College", 3: "Bachelor", 4: "Master", 5: "Doctor"})
+np

@@ -30,9 +30,10 @@ def clean_data(data):
 
 # Rename Columns
 def rename(column):
-    rename = data.rename({column: "EducationLevel"}, axis=1, inplace=False)
-    print(rename.shape)
+    rename = data.rename(columns={column: "EducationLevel"}, inplace=True)
+    print(data.columns)
     return data
+
 
 
 # Drop Columns
@@ -114,15 +115,13 @@ print(manager_survey_data.head())
 data = import_data("XYZ Company/general_data.csv")
 clean_data(data)
 set_index("EmployeeID")
-data_drop("EmployeeCount")
-data_drop("StandardHours")
-data_drop("Over18")
-data_drop("MaritalStatus")
+data_drop(["EmployeeCount", "StandardHours", "Over18", "MaritalStatus"])
 rename("Education")
-data["Education_Level"] = data["Education_Level"].replace({1: "Below College", 2: "College", 3: "Bachelor", 4: "Master", 5: "Doctor"})
 value_counts(["Department","Attrition"])
-value_counts("Attrition")
 loop(data)
 general_data = data
 print(general_data.head())
+
+
+
 

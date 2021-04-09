@@ -4,6 +4,10 @@ def drop(columns):
     print(drop.head())
     return data
 
+data_drop("StandardHours")
+data_drop("Over18")
+data_drop("MaritalStatus")
+
 add again
 #TOMORROW - Try drop dates in timestamps
 
