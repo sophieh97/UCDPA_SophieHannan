@@ -28,6 +28,12 @@ rename("Unnamed: 0")
 data.iloc[:, 1] = data.iloc[:, 1].apply(pd.to_datetime, errors = "coerce")
 print(data.head())
 
+# Grouping Data
+def groupby(column):
+    groupby= data.groupby(column)["Attrition"].count("Yes")
+    print(groupby.head())
+    return data
+
 # In Time
 data = import_data("XYZ Company/in_time.csv")
 clean_data(data)
