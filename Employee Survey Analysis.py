@@ -57,7 +57,6 @@ def sort_values(columns):
     print(sort_values.shape)
     return data
 
-
 # Replace using a dictionary
 def my_dict(columns):
     my_dict = data[columns].replace({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
@@ -102,8 +101,11 @@ print(employee_survey_data.head())
 # Manager Survey Analysis
 data = import_data("XYZ Company/manager_survey_data.csv")
 set_index("EmployeeID")
-data["JobInvolvement"] = data["JobInvolvement"].replace({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
-data["PerformanceRating"] = data["PerformanceRating"].replace({1: "Low", 2: "Good", 3: "Excellent", 4: "Outstanding"})
+my_dict_manager_survey1 = dict({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
+data["JobInvolvement"] = data["JobInvolvement"].replace(my_dict_manager_survey1)
+print(data.head())
+my_dict_manager_survey2 = dict({1: "Low", 2: "Good", 3: "Excellent", 4: "Outstanding"})
+data["PerformanceRating"] = data["PerformanceRating"].replace(my_dict_manager_survey2)
 print(data.head())
 value_counts("JobInvolvement")
 value_counts("PerformanceRating")
@@ -118,9 +120,15 @@ set_index("EmployeeID")
 data_drop(["EmployeeCount", "StandardHours", "Over18", "MaritalStatus"])
 rename("Education")
 value_counts(["Department","Attrition"])
+print(data.iloc[:5, :5])
 loop(data)
 general_data = data
 print(general_data.head())
+
+
+
+
+
 
 
 
