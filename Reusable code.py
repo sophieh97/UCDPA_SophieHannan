@@ -91,7 +91,23 @@ print(value_counts_number)
 sns.countplot(x = "Attrition",data=general_data,hue="Gender")
 plt.show()
 
+# Create a bar plot of interest in math, separated by gender
+sns.catplot(x="Gender", y="Age", data=survey_data, kind="bar")
+# Show plot
+plt.show()
 
+# or
+
+# Set palette to "Blues"
+sns.set_palette("Blues")
+# Adjust to add subgroups based on "Interested in Pets"
+g = sns.catplot(x="Gender",
+                y="Age", data=survey_data,
+                kind="box", hue="Attrition")
+# Set title to "Age of Those Interested in Pets vs. Not"
+g.fig.suptitle("Attrition by Demographics")
+# Show plot
+plt.show()
 
 plt.figure(figsize=(8,8))
 sns.violinplot(y='Age',x='Attrition',data=hr)
@@ -128,3 +144,34 @@ for left, right in zip(left_bars, right_bars):
 
     ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
     ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+
+# Change the orientation of the plot
+# Create column subplots based on age category
+sns.catplot(y="Department", data=survey_data,
+            kind="count", col="Age")
+# Show plot
+plt.show()
+
+def pie(category):
+    label = []
+    label_percent = []
+    for cat in general_df[category].unique():
+        label.append(cat)
+        t1 = general_df[(general_df[category] == cat) & (general_df['Attrition'] == 'Yes')].shape[0]
+        t2 = general_df[general_df[category] == cat].shape[0]
+        label_percent.append(t1/t2 * 100)
+    fig1, ax1 = plt.subplots()
+    ax1.pie(label_percent, labels=label, autopct='%1.1f%%', shadow=True, startangle=180)
+    centre_circle = plt.Circle((0,0),0.75,fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
+    ax1.axis('equal')
+    plt.title(category)
+    plt.show()
+
+pie("Education")
+pie("Department")
+pie('BusinessTravel')
+#As obeserved earlier people from HR background has high tendency to leave.
+#From the above graph it seems like company need to check its policy on travelling as almost 83% people who travels has a tendency to leave Among them frequent travellers has a higher possibility of leaving the company.
+#https://www.kaggle.com/priyam6792/hr-case-study
