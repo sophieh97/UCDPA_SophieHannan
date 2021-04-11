@@ -126,7 +126,10 @@ value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
 value_counts(["MaritalStatus", "Attrition"])
 value_counts(["NumCompaniesWorked", "Attrition"])
-
+print(data.iloc[:5, :5])
+loop(data)
+general_data = data
+print(general_data.head())
 
 
 
