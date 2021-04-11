@@ -42,3 +42,5 @@ manager_survey_data = groupby("Department")
 print(manager_survey_dataset.head())
 # Change the Order of Dataframe:
 manager_survey_dataset = data.groupby("Department")["Attrition"].sum()
+
+https://realpython.com/pandas-dataframe/

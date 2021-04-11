@@ -117,13 +117,23 @@ print(manager_survey_data.head())
 data = import_data("XYZ Company/general_data.csv")
 clean_data(data)
 set_index("EmployeeID")
-data_drop(["EmployeeCount", "StandardHours", "Over18", "MaritalStatus"])
+# kept martial status from drop
+data_drop(["EmployeeCount", "StandardHours", "Over18"])
 rename("Education")
-value_counts(["Department","Attrition"])
+# Can only do values not numbers
+value_counts(["Department", "Attrition"])
+value_counts(["BusinessTravel", "Attrition"])
+value_counts(["MaritalStatus", "Attrition"])
 print(data.iloc[:5, :5])
 loop(data)
 general_data = data
 print(general_data.head())
+
+
+
+
+
+
 
 
 
