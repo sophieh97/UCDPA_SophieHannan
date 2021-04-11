@@ -75,9 +75,8 @@ def loop(data):
 
 # Counting Data
 def value_counts(columns):
-    value_counts = data[columns].value_counts()
-    print(value_counts.isnull().sum())
-    print(value_counts.head())
+    value_counts = data[columns].value_counts(ascending=False)
+    print(value_counts)
     return data
 
 
@@ -89,6 +88,7 @@ clean_data(data)
 set_index("EmployeeID")
 sort_values(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
 my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
+# Dont think these work
 value_counts("EnvironmentSatisfaction")
 value_counts("JobSatisfaction")
 value_counts("WorkLifeBalance")
@@ -107,6 +107,7 @@ print(data.head())
 my_dict_manager_survey2 = dict({1: "Low", 2: "Good", 3: "Excellent", 4: "Outstanding"})
 data["PerformanceRating"] = data["PerformanceRating"].replace(my_dict_manager_survey2)
 print(data.head())
+#Dont think these work correctly
 value_counts("JobInvolvement")
 value_counts("PerformanceRating")
 loop(data)
@@ -124,10 +125,8 @@ rename("Education")
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
 value_counts(["MaritalStatus", "Attrition"])
-print(data.iloc[:5, :5])
-loop(data)
-general_data = data
-print(general_data.head())
+value_counts(["NumCompaniesWorked", "Attrition"])
+
 
 
 
