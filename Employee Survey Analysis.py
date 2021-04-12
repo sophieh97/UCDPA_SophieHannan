@@ -121,6 +121,16 @@ general_data = set_index("EmployeeID")
 # Final check before merge
 print(general_data.isnull().sum())
 
+# Merge DataFrames
+df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
+data = pd.merge(manager_survey_data, df1, how="inner", on="EmployeeID")
+data = set_index("EmployeeID")
+print(data.columns)
+print(data.iloc[:5, :5])
+# Code check complete
+print(general_data.isnull().sum())
+
+
 
 
 
