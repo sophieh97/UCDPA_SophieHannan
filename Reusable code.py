@@ -73,9 +73,13 @@ data["PerformanceRating"] = data["PerformanceRating"].replace({1: "Low", 2: "Goo
 # Merge Data Code when fixed - add when FIXED
 df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
 data = pd.merge(manager_survey_data, general_data, how="inner", on="EmployeeID")
-
-my_dict_general_data = dict({1: "Below College", 2: "College", 3: "Bachelor", 4: "Master", 5: "Doctor"})
-data["Education_Level"] = data["Education_Level"].replace(my_dict_general_data)
+#This works
+my_dict_manager_survey2 = dict({1: "Low", 2: "Good", 3: "Excellent", 4: "Outstanding"})
+data["PerformanceRating"] = data["PerformanceRating"].replace(my_dict_manager_survey2)
+print(data.head())
+#Fix this
+my_dict_general_data1 = dict({1: "Below College", 2: "College", 3: "Bachelor", 4: "Master", 5: "Doctor"})
+data["Education_Level"] = data["Education_Level"].replace(my_dict_general_data1)
 print(data.head())
 
 # need to create a list to do it - test without list

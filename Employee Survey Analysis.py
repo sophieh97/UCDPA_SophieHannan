@@ -110,25 +110,43 @@ print(manager_survey_data.isnull().sum())
 data = import_data("XYZ Company/general_data.csv")
 data = clean_data(data)
 data = data_drop(["EmployeeCount", "StandardHours", "Over18", "MaritalStatus"])
+my_dict_general_data1 = dict({1: "Below College", 2: "College", 3: "Bachelor", 4: "Master", 5: "Doctor"})
+data["Education"] = data["Education"].replace(my_dict_general_data1)
+print(data.head())
 data.rename(columns={"Education": "EducationLevel"}, inplace=True)
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
 value_counts(["NumCompaniesWorked", "Attrition"])
-print(data.iloc[:5, :5])
+print(data.iloc[:12, :12])
 loop(data)
 general_data = data
 general_data = set_index("EmployeeID")
 # Final check before merge
 print(general_data.isnull().sum())
 
+
 # Merge DataFrames
 df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
 data = pd.merge(manager_survey_data, df1, how="inner", on="EmployeeID")
+# Code check complete
 data = set_index("EmployeeID")
 print(data.columns)
-print(data.iloc[:5, :5])
-# Code check complete
+print(data.iloc[:13, :13])
 print(general_data.isnull().sum())
+
+# Numpy on merged dataframes
+arr = data.to_numpy()
+columns = ['EmployeeID', 'JobInvolvement', 'PerformanceRating',
+       'EnvironmentSatisfaction', 'JobSatisfaction', 'WorkLifeBalance', 'Age',
+       'Attrition', 'BusinessTravel', 'Department', 'DistanceFromHome',
+       'EducationLevel', 'EducationField', 'Gender', 'JobLevel', 'JobRole',
+       'MonthlyIncome', 'NumCompaniesWorked', 'PercentSalaryHike',
+       'StockOptionLevel', 'TotalWorkingYears', 'TrainingTimesLastYear',
+       'YearsAtCompany', 'YearsSinceLastPromotion', 'YearsWithCurrManager']
+print('\nNumpy Array Datatype :', arr, columns)
+# np_height extra
+
+
 
 
 
