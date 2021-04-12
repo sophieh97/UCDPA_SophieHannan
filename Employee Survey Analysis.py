@@ -51,8 +51,9 @@ def sort_values(columns):
 
 # Replace using a dictionary
 def my_dict(columns):
-    my_dict = data[columns].replace({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
-    print(my_dict.head())
+    my_dict_employee_survey = dict({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
+    data[columns] = data[columns].replace(my_dict_employee_survey)
+    print(data.head())
     return data
 
 
@@ -76,21 +77,19 @@ def value_counts(columns):
 data = import_data("XYZ Company/employee_survey_data.csv")
 data = clean_data(data)
 data = sort_values(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
-# check below manager survey and see if it works - this doesnt carry on
-data = my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
-data = set_index("EmployeeID")
 value_counts("EnvironmentSatisfaction")
 value_counts("JobSatisfaction")
 value_counts("WorkLifeBalance")
 loop(data)
 employee_survey_data = data
-print(employee_survey_data.head())
+employee_survey_data = my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
+employee_survey_data = set_index("EmployeeID")
+# Final check before merge
+print(employee_survey_data.isnull().sum())
 
-# Check if employee ID still in it if not do separtely like below - think will have to do separte
 
 # Manager Survey Analysis
 data = import_data("XYZ Company/manager_survey_data.csv")
-data = set_index("EmployeeID")
 data = sort_values(["JobInvolvement", "PerformanceRating"])
 my_dict_manager_survey1 = dict({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
 data["JobInvolvement"] = data["JobInvolvement"].replace(my_dict_manager_survey1)
@@ -98,17 +97,18 @@ print(data.head())
 my_dict_manager_survey2 = dict({1: "Low", 2: "Good", 3: "Excellent", 4: "Outstanding"})
 data["PerformanceRating"] = data["PerformanceRating"].replace(my_dict_manager_survey2)
 print(data.head())
-#Dont think these work correctly
 value_counts("JobInvolvement")
 value_counts("PerformanceRating")
 loop(data)
 manager_survey_data = data
-print(manager_survey_data.head())
+manager_survey_data = set_index("EmployeeID")
+# Final check before merge
+print(manager_survey_data.isnull().sum())
+
 
 # General data
 data = import_data("XYZ Company/general_data.csv")
 data = clean_data(data)
-data = set_index("EmployeeID")
 data = data_drop(["EmployeeCount", "StandardHours", "Over18", "MaritalStatus"])
 data.rename(columns={"Education": "EducationLevel"}, inplace=True)
 value_counts(["Department", "Attrition"])
@@ -117,28 +117,9 @@ value_counts(["NumCompaniesWorked", "Attrition"])
 print(data.iloc[:5, :5])
 loop(data)
 general_data = data
-print(general_data.head())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+general_data = set_index("EmployeeID")
+# Final check before merge
+print(general_data.isnull().sum())
 
 
 
