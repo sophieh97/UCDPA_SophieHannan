@@ -76,6 +76,7 @@ def value_counts(columns):
 data = import_data("XYZ Company/employee_survey_data.csv")
 data = clean_data(data)
 data = sort_values(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
+# check below manager survey and see if it works - this doesnt carry on
 data = my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
 data = set_index("EmployeeID")
 value_counts("EnvironmentSatisfaction")
@@ -117,6 +118,7 @@ print(data.iloc[:5, :5])
 loop(data)
 general_data = data
 print(general_data.head())
+
 
 
 
