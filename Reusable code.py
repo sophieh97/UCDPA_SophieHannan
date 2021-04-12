@@ -36,6 +36,13 @@ sort_values(["JobInvolvement", "PerformanceRating"])
 # Importing and Inital Review of Data: general_data
 data = import_data("XYZ Company/general_data.csv")
 
+# Rename Columns
+def rename(column):
+    rename = data.rename(columns={column: "EducationLevel"}, inplace=True)
+    print(rename)
+    return data
+
+
 # Print out the mean of np_height_in - numpy
 print(np.mean(np_height_in))
 # Print out the median of np_height_in

@@ -28,14 +28,6 @@ def clean_data(data):
     return data
 
 
-# Rename Columns
-def rename(column):
-    rename = data.rename(columns={column: "EducationLevel"}, inplace=True)
-    print(data.columns)
-    return data
-
-
-
 # Drop Columns
 def data_drop(columns):
     data_drop = data.drop((columns), axis=1, inplace=True)
@@ -61,7 +53,6 @@ def sort_values(columns):
 def my_dict(columns):
     my_dict = data[columns].replace({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
     print(my_dict.head())
-    print(data.head())
     return data
 
 
@@ -72,7 +63,6 @@ def loop(data):
         print(row)
     return data
 
-
 # Counting Data
 def value_counts(columns):
     value_counts = data[columns].value_counts(ascending=False)
@@ -82,13 +72,12 @@ def value_counts(columns):
 
 # Need to remove isnull here when fixed
 
-# Employee Survey Data
+# Employee Survey Data - added data = to first few waiting shubham
 data = import_data("XYZ Company/employee_survey_data.csv")
-clean_data(data)
-set_index("EmployeeID")
-sort_values(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
-my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
-# Dont think these work
+data = clean_data(data)
+data = sort_values(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
+data = my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
+data = set_index("EmployeeID")
 value_counts("EnvironmentSatisfaction")
 value_counts("JobSatisfaction")
 value_counts("WorkLifeBalance")
@@ -100,7 +89,8 @@ print(employee_survey_data.head())
 
 # Manager Survey Analysis
 data = import_data("XYZ Company/manager_survey_data.csv")
-set_index("EmployeeID")
+data = set_index("EmployeeID")
+data = sort_values(["JobInvolvement", "PerformanceRating"])
 my_dict_manager_survey1 = dict({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
 data["JobInvolvement"] = data["JobInvolvement"].replace(my_dict_manager_survey1)
 print(data.head())
@@ -116,20 +106,36 @@ print(manager_survey_data.head())
 
 # General data
 data = import_data("XYZ Company/general_data.csv")
-clean_data(data)
-set_index("EmployeeID")
-# kept martial status from drop
-data_drop(["EmployeeCount", "StandardHours", "Over18"])
-rename("Education")
-# Can only do values not numbers
+data = clean_data(data)
+data = set_index("EmployeeID")
+data = data_drop(["EmployeeCount", "StandardHours", "Over18", "MaritalStatus"])
+data.rename(columns={"Education": "EducationLevel"}, inplace=True)
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
-value_counts(["MaritalStatus", "Attrition"])
 value_counts(["NumCompaniesWorked", "Attrition"])
 print(data.iloc[:5, :5])
 loop(data)
 general_data = data
 print(general_data.head())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
