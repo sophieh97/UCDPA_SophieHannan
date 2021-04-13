@@ -132,7 +132,7 @@ data = pd.merge(manager_survey_data, df1, how="inner", on="EmployeeID")
 data = set_index("EmployeeID")
 print(data.columns)
 print(data.iloc[:13, :13])
-print(general_data.isnull().sum())
+print(data.isnull().sum())
 
 # Numpy on merged dataframes
 arr = data.to_numpy()
@@ -143,8 +143,30 @@ columns = ['EmployeeID', 'JobInvolvement', 'PerformanceRating',
        'MonthlyIncome', 'NumCompaniesWorked', 'PercentSalaryHike',
        'StockOptionLevel', 'TotalWorkingYears', 'TrainingTimesLastYear',
        'YearsAtCompany', 'YearsSinceLastPromotion', 'YearsWithCurrManager']
-print('\nNumpy Array Datatype :', arr, columns)
-# np_height extra
+dataframe = print('\nNumpy Array Datatype :', arr, columns)
+np_dataframe = np.array(dataframe)
+print(type(np_dataframe))
+
+# Matplotlib and Seaborn Graphs
+fig, ax = plt.subplots()
+sns.countplot(x = "Attrition",data=data,hue="Gender")
+ax.set(title="Attrition by Gender")
+plt.show()
+plt.close()
+
+fig, ax = plt.subplots()
+sns.set_palette("muted")
+sns.violinplot(y='Age',x='Attrition',data=data)
+ax.set(title="Attrition by Age")
+plt.show()
+plt.close()
+
+
+
+
+
+
+
 
 
 

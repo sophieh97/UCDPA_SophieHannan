@@ -44,3 +44,19 @@ print(manager_survey_dataset.head())
 manager_survey_dataset = data.groupby("Department")["Attrition"].sum()
 
 https://realpython.com/pandas-dataframe/
+
+
+
+arr = data.to_numpy()
+columns = ['EmployeeID', 'JobInvolvement', 'PerformanceRating',
+       'EnvironmentSatisfaction', 'JobSatisfaction', 'WorkLifeBalance', 'Age',
+       'Attrition', 'BusinessTravel', 'Department', 'DistanceFromHome',
+       'EducationLevel', 'EducationField', 'Gender', 'JobLevel', 'JobRole',
+       'MonthlyIncome', 'NumCompaniesWorked', 'PercentSalaryHike',
+       'StockOptionLevel', 'TotalWorkingYears', 'TrainingTimesLastYear',
+       'YearsAtCompany', 'YearsSinceLastPromotion', 'YearsWithCurrManager']
+dataframe = print('\nNumpy Array Datatype :', arr, columns)
+np_dataframe = np.array(dataframe)
+print(type(np_dataframe))
+printavg = np.mean(dataframe[:,0])
+# np_height extra
