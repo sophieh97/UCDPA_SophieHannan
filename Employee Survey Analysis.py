@@ -87,6 +87,7 @@ def pie(category):
     plt.title(category)
     plt.show()
 
+
 # Need to remove isnull here when fixed
 
 # Employee Survey Data - added data = to first few waiting shubham
@@ -168,12 +169,6 @@ print(type(np_dataframe))
 # Attrition by Gender
 sns.set_style("whitegrid")
 sns.set_palette("muted")
-fig, ax = plt.subplots()
-sns.countplot(x = "Attrition",data=data,hue="Gender")
-ax.set(title="Attrition by Gender")
-plt.show()
-plt.close()
-
 plt.figure(figsize=(8,8))
 ax = sns.countplot(x='Attrition', data=data, hue="Gender")
 ax.set_ylabel('# of Employee')
@@ -190,7 +185,6 @@ for left, right in zip(left_bars, right_bars):
 
     ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
     ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
-
 
 # Attrition by Age
 fig, ax = plt.subplots()
@@ -211,50 +205,116 @@ plt.show()
 
 # Attrition by Business Travel
 fig, ax = plt.subplots()
-Business_Travel = sns.countplot(x = "Attrition",data=data,hue="BusinessTravel")
-Business_Travel= ax.set(title="Attrition by Business Travel")
-plt.show()
-plt.close()
+plt.figure(figsize=(8,8))
+ax = sns.countplot(x='Attrition', data=data, hue="BusinessTravel")
+ax.set_ylabel('# of Employee')
+ax.set(title="Attrition by Business Travel")
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
+
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
+
+    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
 # % of Attrition by Business Travel
 pie('BusinessTravel')
 
 # Attrition by Department
 fig, ax = plt.subplots()
-Business_Travel = sns.countplot(x = "Attrition",data=data,hue="Department")
-Business_Travel= ax.set(title="Attrition by Department")
-plt.show()
-plt.close()
+plt.figure(figsize=(8,8))
+ax = sns.countplot(x='Attrition', data=data, hue="Department")
+ax.set(title="Attrition by Department")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
+
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
+
+    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
 # % of Attrition by Department
 pie("Department")
 
 # Attrition by Education Level
 fig, ax = plt.subplots()
-Business_Travel = sns.countplot(x = "Attrition",data=data,hue="EducationLevel")
-Business_Travel= ax.set(title="Attrition by Education Level")
-plt.show()
-plt.close()
+plt.figure(figsize=(8,8))
+ax = sns.countplot(x='Attrition', data=data, hue="EducationLevel")
+ax.set(title="Attrition by Education Level")
+ax.set(title="Attrition by Education Level")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
+
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
+
+    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
 # % of Attrition by Education Level
 pie("EducationLevel")
 
 # Attrition by Education field
 fig, ax = plt.subplots()
-Business_Travel = sns.countplot(x = "Attrition",data=data,hue="EducationField")
-Business_Travel= ax.set(title="Attrition by Education Field")
-plt.show()
-plt.close()
+plt.figure(figsize=(8,8))
+ax = sns.countplot(x='Attrition', data=data, hue="EducationField")
+ax.set(title="Attrition by Education Field")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
+
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
+
+    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
 # % of Attrition per Job Role
 pie("JobRole")
 
+# Attrition Levels from Years at Company
+plt.figure(figsize=(8,8))
+sns.violinplot(y='YearsAtCompany',x='Attrition',data=data)
+plt.show()
+plt.close
 
+# Attrition Levels from Training Since Last Year
+plt.figure(figsize=(8,8))
+sns.violinplot(y="TrainingTimesLastYear",x='Attrition',data=data)
+plt.show()
+plt.close
 
+# Attrition Levels from Years with Current Manager
+plt.figure(figsize=(8,8))
+sns.violinplot(y="YearsWithCurrManager",x='Attrition',data=data)
+plt.show()
+plt.close
 
-
-
-
+# Attrition Levels from Years Since Last Promotion
+plt.figure(figsize=(8,8))
+sns.violinplot(y="YearsSinceLastPromotion",x='Attrition',data=data)
+plt.show()
+plt.close
 
 
 
