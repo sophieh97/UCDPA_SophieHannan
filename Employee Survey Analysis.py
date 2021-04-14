@@ -70,6 +70,23 @@ def value_counts(columns):
     print(value_counts)
     return data
 
+def pie(category):
+    label = []
+    label_percent = []
+    for cat in data[category].unique():
+        label.append(cat)
+        t1 = data[(data[category] == cat) & (data['Attrition'] == 'Yes')].shape[0]
+        t2 = data[data[category] == cat].shape[0]
+        label_percent.append(t1/t2 * 100)
+    fig1, ax1 = plt.subplots()
+    ax1.pie(label_percent, labels=label, autopct='%1.1f%%', shadow=True, startangle=180)
+    centre_circle = plt.Circle((0,0),0.75,fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
+    ax1.axis('equal')
+    plt.title(category)
+    plt.show()
+
 
 # Need to remove isnull here when fixed
 
@@ -114,6 +131,7 @@ my_dict_general_data1 = dict({1: "Below College", 2: "College", 3: "Bachelor", 4
 data["Education"] = data["Education"].replace(my_dict_general_data1)
 print(data.head())
 data.rename(columns={"Education": "EducationLevel"}, inplace=True)
+value_counts(["DistanceFromHome","Attrition"])
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
 value_counts(["NumCompaniesWorked", "Attrition"])
@@ -148,19 +166,70 @@ np_dataframe = np.array(dataframe)
 print(type(np_dataframe))
 
 # Matplotlib and Seaborn Graphs
+# Attrition by Gender
+sns.set_style("whitegrid")
+sns.set_palette("muted")
 fig, ax = plt.subplots()
 sns.countplot(x = "Attrition",data=data,hue="Gender")
 ax.set(title="Attrition by Gender")
 plt.show()
 plt.close()
 
+# Attrition by Age
 fig, ax = plt.subplots()
-sns.set_palette("muted")
 sns.violinplot(y='Age',x='Attrition',data=data)
 ax.set(title="Attrition by Age")
 plt.show()
 plt.close()
 
+# Attrition by Demographics
+fig, ax = plt.subplots()
+sns.set_palette("Set2")
+demographics = sns.catplot(x="Gender",
+                y="Age", data=data,
+                kind="box", hue="Attrition")
+demographics.fig.suptitle("Attrition by Demographics")
+plt.show()
+
+# Attrition by Business Travel
+fig, ax = plt.subplots()
+Business_Travel = sns.countplot(x = "Attrition",data=data,hue="BusinessTravel")
+Business_Travel= ax.set(title="Attrition by Business Travel")
+plt.show()
+plt.close()
+
+# % of Attrition by Business Travel
+pie('BusinessTravel')
+
+# Attrition by Department
+fig, ax = plt.subplots()
+Business_Travel = sns.countplot(x = "Attrition",data=data,hue="Department")
+Business_Travel= ax.set(title="Attrition by Department")
+plt.show()
+plt.close()
+
+# % of Attrition by Department
+pie("Department")
+
+# Attrition by Education Level
+fig, ax = plt.subplots()
+Business_Travel = sns.countplot(x = "Attrition",data=data,hue="EducationLevel")
+Business_Travel= ax.set(title="Attrition by Education Level")
+plt.show()
+plt.close()
+
+# % of Attrition by Education Level
+pie("EducationLevel")
+
+# Attrition by Education field
+fig, ax = plt.subplots()
+Business_Travel = sns.countplot(x = "Attrition",data=data,hue="EducationField")
+Business_Travel= ax.set(title="Attrition by Education Field")
+plt.show()
+plt.close()
+
+# % of Attrition per Job Role
+pie("JobRole")
 
 
 
