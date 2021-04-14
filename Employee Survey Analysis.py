@@ -87,7 +87,6 @@ def pie(category):
     plt.title(category)
     plt.show()
 
-
 # Need to remove isnull here when fixed
 
 # Employee Survey Data - added data = to first few waiting shubham
@@ -175,6 +174,24 @@ ax.set(title="Attrition by Gender")
 plt.show()
 plt.close()
 
+plt.figure(figsize=(8,8))
+ax = sns.countplot(x='Attrition', data=data, hue="Gender")
+ax.set_ylabel('# of Employee')
+ax.set(title="Attrition by Gender")
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
+
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
+
+    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+
+
 # Attrition by Age
 fig, ax = plt.subplots()
 sns.violinplot(y='Age',x='Attrition',data=data)
@@ -190,6 +207,7 @@ demographics = sns.catplot(x="Gender",
                 kind="box", hue="Attrition")
 demographics.fig.suptitle("Attrition by Demographics")
 plt.show()
+
 
 # Attrition by Business Travel
 fig, ax = plt.subplots()
