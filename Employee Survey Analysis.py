@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import statistics
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -135,6 +136,7 @@ value_counts(["DistanceFromHome","Attrition"])
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
 value_counts(["NumCompaniesWorked", "Attrition"])
+value_counts(["YearsAtCompany", "Attrition"])
 print(data.iloc[:12, :12])
 loop(data)
 general_data = data
@@ -252,7 +254,6 @@ fig, ax = plt.subplots()
 plt.figure(figsize=(8,8))
 ax = sns.countplot(x='Attrition', data=data, hue="EducationLevel")
 ax.set(title="Attrition by Education Level")
-ax.set(title="Attrition by Education Level")
 ax.set_ylabel('# of Employee')
 bars = ax.patches
 half = int(len(bars)/2)
@@ -293,41 +294,130 @@ for left, right in zip(left_bars, right_bars):
 pie("JobRole")
 
 # Attrition Levels from Years at Company
-plt.figure(figsize=(8,8))
+fig, ax = plt.subplots()
+ax.set(title="Attrition by Years at Company")
 sns.violinplot(y='YearsAtCompany',x='Attrition',data=data)
 plt.show()
 plt.close
 
 # Attrition Levels from Training Since Last Year
-plt.figure(figsize=(8,8))
+fig, ax = plt.subplots()
+ax.set(title="Attrition by Training Times Last Year")
 sns.violinplot(y="TrainingTimesLastYear",x='Attrition',data=data)
 plt.show()
 plt.close
 
 # Attrition Levels from Years with Current Manager
-plt.figure(figsize=(8,8))
+fig, ax = plt.subplots()
+ax.set(title="Attrition by Years with Current Manager")
 sns.violinplot(y="YearsWithCurrManager",x='Attrition',data=data)
 plt.show()
 plt.close
 
 # Attrition Levels from Years Since Last Promotion
-plt.figure(figsize=(8,8))
+fig, ax = plt.subplots()
+ax.set(title="Attrition by Years Since Last Promotion")
 sns.violinplot(y="YearsSinceLastPromotion",x='Attrition',data=data)
 plt.show()
 plt.close
 
+# Attrition by Environment Satisfaction
+fig, ax = plt.subplots()
+ax = sns.countplot(x='EnvironmentSatisfaction', data=data, hue="Attrition")
+ax.set(title="Attrition by Environment Satisfaction")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
 
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
 
+    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
+plt.show()
 
+# Attrition by Environment Satisfaction
+fig, ax = plt.subplots()
+ax = sns.countplot(x='JobSatisfaction', data=data, hue="Attrition")
+ax.set(title="Attrition by Job Satisfaction")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
 
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
 
+    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
+plt.show()
 
+# Attrition by WorkLife Balance
+fig, ax = plt.subplots()
+ax = sns.countplot(x='WorkLifeBalance', data=data, hue="Attrition")
+ax.set(title="Attrition by WorkLife Balance")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
 
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
 
+    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
+plt.show()
 
+# Attrition by Job Involvement
 
+fig, ax = plt.subplots()
+ax = sns.countplot(x='JobInvolvement', data=data, hue="Attrition")
+ax.set(title="Attrition by Job Involvement")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
 
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
 
+    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+
+plt.show()
+
+# Attrition by Performance Rating
+fig, ax = plt.subplots()
+ax = sns.countplot(x='PerformanceRating', data=data, hue="Attrition")
+ax.set(title="Attrition by Performance Rating")
+ax.set_ylabel('# of Employee')
+bars = ax.patches
+half = int(len(bars)/2)
+left_bars = bars[:half]
+right_bars = bars[half:]
+
+for left, right in zip(left_bars, right_bars):
+    height_l = left.get_height()
+    height_r = right.get_height()
+    total = height_l + height_r
+
+    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
+    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+
+plt.show()

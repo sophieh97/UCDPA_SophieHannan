@@ -186,3 +186,4 @@ pie('BusinessTravel')
 #As obeserved earlier people from HR background has high tendency to leave.
 #From the above graph it seems like company need to check its policy on travelling as almost 83% people who travels has a tendency to leave Among them frequent travellers has a higher possibility of leaving the company.
 #https://www.kaggle.com/priyam6792/hr-case-study
+#https://www.kaggle.com/gauravduttakiit/hr-analytics-with-logistic-reg-binomial-model
