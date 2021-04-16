@@ -134,6 +134,7 @@ data["Education"] = data["Education"].replace(my_dict_general_data1)
 print(data.head())
 data.rename(columns={"Education": "EducationLevel"}, inplace=True)
 value_counts("Attrition")
+value_counts(["Gender", "Attrition"])
 value_counts(["DistanceFromHome","Attrition"])
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
@@ -173,22 +174,14 @@ print(type(np_dataframe))
 # Attrition by Gender
 sns.set_style("whitegrid")
 sns.set_palette("muted")
-plt.figure(figsize=(8,8))
-ax = sns.countplot(x='Attrition', data=data, hue="Gender")
-ax.set_ylabel('# of Employee')
+fig, ax = plt.subplots()
+Gender = sns.countplot(x="Attrition",data=data,hue="Gender")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
 ax.set(title="Attrition by Gender")
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
+plt.show()
+plt.close()
 
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
 # Attrition by Age
 fig, ax = plt.subplots()
@@ -206,91 +199,50 @@ demographics = sns.catplot(x="Gender",
 demographics.fig.suptitle("Attrition by Demographics")
 plt.show()
 
-
 # Attrition by Business Travel
 fig, ax = plt.subplots()
-plt.figure(figsize=(8,8))
-ax = sns.countplot(x='Attrition', data=data, hue="BusinessTravel")
-ax.set_ylabel('# of Employee')
-ax.set(title="Attrition by Business Travel")
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="BusinessTravel")
+Business_Travel = ax.set(title="Attrition by Business Travel")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+plt.show()
+plt.close()
 
 # % of Attrition by Business Travel
 pie('BusinessTravel')
 
 # Attrition by Department
 fig, ax = plt.subplots()
-plt.figure(figsize=(8,8))
-ax = sns.countplot(x='Attrition', data=data, hue="Department")
-ax.set(title="Attrition by Department")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="Department")
+Business_Travel = ax.set(title="Attrition by Department")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+plt.show()
+plt.close()
 
 # % of Attrition by Department
 pie("Department")
 
 # Attrition by Education Level
 fig, ax = plt.subplots()
-plt.figure(figsize=(8,8))
-ax = sns.countplot(x='Attrition', data=data, hue="EducationLevel")
-ax.set(title="Attrition by Education Level")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationLevel")
+Business_Travel = ax.set(title="Attrition by Education Level")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+plt.show()
+plt.close()
 
 # % of Attrition by Education Level
 pie("EducationLevel")
 
 # Attrition by Education field
 fig, ax = plt.subplots()
-plt.figure(figsize=(8,8))
-ax = sns.countplot(x='Attrition', data=data, hue="EducationField")
-ax.set(title="Attrition by Education Field")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 40, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationField")
+Business_Travel = ax.set(title="Attrition by Education Field")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+plt.show()
+plt.close()
 
 # % of Attrition per Job Role
 pie("JobRole")
@@ -301,7 +253,6 @@ ax.set(title="Attrition by Years at Company")
 sns.violinplot(y='YearsAtCompany',x='Attrition',data=data)
 plt.show()
 plt.close
-
 
 # Attrition Levels from Training Since Last Year
 fig, ax = plt.subplots()
@@ -326,103 +277,45 @@ plt.close
 
 # Attrition by Environment Satisfaction
 fig, ax = plt.subplots()
-ax = sns.countplot(x='EnvironmentSatisfaction', data=data, hue="Attrition")
-ax.set(title="Attrition by Environment Satisfaction")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
-
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="EnvironmentSatisfaction")
+Business_Travel = ax.set(title="Attrition by Environment Satisfaction")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
 plt.show()
+plt.close()
 
-# Attrition by Environment Satisfaction
+# Attrition by Job Satisfaction
 fig, ax = plt.subplots()
-ax = sns.countplot(x='JobSatisfaction', data=data, hue="Attrition")
-ax.set(title="Attrition by Job Satisfaction")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
-
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobSatisfaction")
+Business_Travel = ax.set(title="Attrition by Job Satisfaction")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
 plt.show()
+plt.close()
 
 # Attrition by WorkLife Balance
 fig, ax = plt.subplots()
-ax = sns.countplot(x='WorkLifeBalance', data=data, hue="Attrition")
-ax.set(title="Attrition by WorkLife Balance")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
-
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="WorkLifeBalance")
+Business_Travel = ax.set(title="Attrition by Worklife Balance")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
 plt.show()
+plt.close()
 
 # Attrition by Job Involvement
-
 fig, ax = plt.subplots()
-ax = sns.countplot(x='JobInvolvement', data=data, hue="Attrition")
-ax.set(title="Attrition by Job Involvement")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
-
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobInvolvement")
+Business_Travel = ax.set(title="Attrition by Job Involvement")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
 plt.show()
+plt.close()
 
 # Attrition by Performance Rating
 fig, ax = plt.subplots()
-ax = sns.countplot(x='PerformanceRating', data=data, hue="Attrition")
-ax.set(title="Attrition by Performance Rating")
-ax.set_ylabel('# of Employee')
-bars = ax.patches
-half = int(len(bars)/2)
-left_bars = bars[:half]
-right_bars = bars[half:]
-
-for left, right in zip(left_bars, right_bars):
-    height_l = left.get_height()
-    height_r = right.get_height()
-    total = height_l + height_r
-
-    ax.text(left.get_x() + left.get_width()/2., height_l + 30, '{0:.0%}'.format(height_l/total), ha="center")
-    ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
-
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="PerformanceRating")
+Business_Travel = ax.set(title="Attrition by Performance Rating")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
 plt.show()
-
-
+plt.close()
