@@ -75,24 +75,6 @@ def value_counts(columns):
     return data
 
 
-def pie(category):
-    label = []
-    label_percent = []
-    for cat in data[category].unique():
-        label.append(cat)
-        t1 = data[(data[category] == cat) & (data['Attrition'] == 'Yes')].shape[0]
-        t2 = data[data[category] == cat].shape[0]
-        label_percent.append(t1/t2 * 100)
-    fig1, ax1 = plt.subplots()
-    ax1.pie(label_percent, labels=label, autopct='%1.1f%%', shadow=True, startangle=180)
-    centre_circle = plt.Circle((0,0),0.75,fc='white')
-    fig = plt.gcf()
-    fig.gca().add_artist(centre_circle)
-    ax1.axis('equal')
-    plt.title(category)
-    plt.show()
-
-
 # Employee Survey Data - added data = to first few waiting shubham
 data = import_data("XYZ Company/employee_survey_data.csv")
 data = clean_data(data)
@@ -204,48 +186,50 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="BusinessTravel")
 Business_Travel = ax.set(title="Attrition by Business Travel")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
-
-# % of Attrition by Business Travel
-pie('BusinessTravel')
 
 # Attrition by Department
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="Department")
 Business_Travel = ax.set(title="Attrition by Department")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
-
-# % of Attrition by Department
-pie("Department")
 
 # Attrition by Education Level
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationLevel")
 Business_Travel = ax.set(title="Attrition by Education Level")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.11, p.get_height()), ha="right", va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
-
-# % of Attrition by Education Level
-pie("EducationLevel")
 
 # Attrition by Education field
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationField")
 Business_Travel = ax.set(title="Attrition by Education Field")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.10, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
 
-# % of Attrition per Job Role
-pie("JobRole")
+# Attrition by Job Role
+fig, ax = plt.subplots()
+Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobRole")
+Business_Travel = ax.set(title="Attrition by Job Role")
+for p in ax.patches:
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.07, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
+plt.show()
+plt.close()
 
 # Attrition Levels from Years at Company
 fig, ax = plt.subplots()
@@ -280,7 +264,8 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EnvironmentSatisfaction")
 Business_Travel = ax.set(title="Attrition by Environment Satisfaction")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.11, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
 
@@ -289,7 +274,8 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobSatisfaction")
 Business_Travel = ax.set(title="Attrition by Job Satisfaction")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.11, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
 
@@ -298,7 +284,8 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="WorkLifeBalance")
 Business_Travel = ax.set(title="Attrition by Worklife Balance")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.11, p.get_height()), ha='right', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
 
@@ -307,7 +294,8 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobInvolvement")
 Business_Travel = ax.set(title="Attrition by Job Involvement")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.11, p.get_height()), ha='center', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
 
@@ -316,6 +304,7 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="PerformanceRating")
 Business_Travel = ax.set(title="Attrition by Performance Rating")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black',
+                size=12)
 plt.show()
 plt.close()
