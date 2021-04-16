@@ -132,8 +132,8 @@ print(general_data.isnull().sum())
 # Merge DataFrames
 df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
 data = pd.merge(manager_survey_data, df1, how="inner", on="EmployeeID")
-# Code check complete
 data = set_index("EmployeeID")
+# Code check complete
 print(data.columns)
 print(data.iloc[:13, :13])
 print(data.isnull().sum())
