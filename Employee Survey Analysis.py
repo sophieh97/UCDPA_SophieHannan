@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-# Importing and Review of Data: employee_survey
+# Importing and Review of Data
 def import_data(filename):
     data = pd.read_csv(filename)
     print(data)
@@ -31,7 +31,8 @@ def clean_data(data):
 
 # Drop Columns
 def data_drop(columns):
-    data_drop = data.drop((columns), axis=1, inplace=True)
+    data_drop = data.drop(columns, axis=1, inplace=True)
+    print(data_drop)
     print(data.shape)
     return data
 
@@ -50,6 +51,7 @@ def sort_values(columns):
     print(sort_values.shape)
     return data
 
+
 # Replace using a dictionary
 def my_dict(columns):
     my_dict_employee_survey = dict({1: "Low", 2: "Medium", 3: "High", 4: "Very High"})
@@ -65,11 +67,13 @@ def loop(data):
         print(row)
     return data
 
+
 # Counting Data
 def value_counts(columns):
     value_counts = data[columns].value_counts(ascending=False)
     print(value_counts)
     return data
+
 
 def pie(category):
     label = []
@@ -89,8 +93,6 @@ def pie(category):
     plt.show()
 
 
-# Need to remove isnull here when fixed
-
 # Employee Survey Data - added data = to first few waiting shubham
 data = import_data("XYZ Company/employee_survey_data.csv")
 data = clean_data(data)
@@ -102,9 +104,8 @@ loop(data)
 employee_survey_data = data
 employee_survey_data = my_dict(["EnvironmentSatisfaction", "JobSatisfaction", "WorkLifeBalance"])
 employee_survey_data = set_index("EmployeeID")
-# Final check before merge
+# Final check of Employee Survey Data
 print(employee_survey_data.isnull().sum())
-
 
 # Manager Survey Analysis
 data = import_data("XYZ Company/manager_survey_data.csv")
@@ -120,7 +121,7 @@ value_counts("PerformanceRating")
 loop(data)
 manager_survey_data = data
 manager_survey_data = set_index("EmployeeID")
-# Final check before merge
+# Final check of Manager Survey
 print(manager_survey_data.isnull().sum())
 
 
@@ -132,6 +133,7 @@ my_dict_general_data1 = dict({1: "Below College", 2: "College", 3: "Bachelor", 4
 data["Education"] = data["Education"].replace(my_dict_general_data1)
 print(data.head())
 data.rename(columns={"Education": "EducationLevel"}, inplace=True)
+value_counts("Attrition")
 value_counts(["DistanceFromHome","Attrition"])
 value_counts(["Department", "Attrition"])
 value_counts(["BusinessTravel", "Attrition"])
@@ -141,9 +143,8 @@ print(data.iloc[:12, :12])
 loop(data)
 general_data = data
 general_data = set_index("EmployeeID")
-# Final check before merge
+# Final check of General Data
 print(general_data.isnull().sum())
-
 
 # Merge DataFrames
 df1 = pd.merge(employee_survey_data, general_data, how="inner", on="EmployeeID")
@@ -153,6 +154,7 @@ data = set_index("EmployeeID")
 print(data.columns)
 print(data.iloc[:13, :13])
 print(data.isnull().sum())
+
 
 # Numpy on merged dataframes
 arr = data.to_numpy()
@@ -300,6 +302,7 @@ sns.violinplot(y='YearsAtCompany',x='Attrition',data=data)
 plt.show()
 plt.close
 
+
 # Attrition Levels from Training Since Last Year
 fig, ax = plt.subplots()
 ax.set(title="Attrition by Training Times Last Year")
@@ -421,3 +424,5 @@ for left, right in zip(left_bars, right_bars):
     ax.text(right.get_x() + right.get_width()/2., height_r + 40, '{0:.0%}'.format(height_r/total), ha="center")
 
 plt.show()
+
+
