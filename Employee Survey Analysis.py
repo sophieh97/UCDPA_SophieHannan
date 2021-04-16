@@ -177,11 +177,11 @@ sns.set_palette("muted")
 fig, ax = plt.subplots()
 Gender = sns.countplot(x="Attrition",data=data,hue="Gender")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline',
+                color='black', size=12)
 ax.set(title="Attrition by Gender")
 plt.show()
 plt.close()
-
 
 # Attrition by Age
 fig, ax = plt.subplots()
@@ -204,7 +204,7 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="BusinessTravel")
 Business_Travel = ax.set(title="Attrition by Business Travel")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black', size=12)
 plt.show()
 plt.close()
 
@@ -216,7 +216,7 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="Department")
 Business_Travel = ax.set(title="Attrition by Department")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black', size=12)
 plt.show()
 plt.close()
 
@@ -228,7 +228,7 @@ fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationLevel")
 Business_Travel = ax.set(title="Attrition by Education Level")
 for p in ax.patches:
-    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='center', va='baseline', color='black', size=12)
+    ax.annotate(f'\n{p.get_height()}', (p.get_x()+0.2, p.get_height()), ha='right', va='baseline', color='black', size=12)
 plt.show()
 plt.close()
 
