@@ -106,7 +106,6 @@ manager_survey_data = set_index("EmployeeID")
 # Final check of Manager Survey
 print(manager_survey_data.isnull().sum())
 
-
 # General data
 data = import_data("XYZ Company/general_data.csv")
 data = clean_data(data)
@@ -138,7 +137,6 @@ print(data.columns)
 print(data.iloc[:13, :13])
 print(data.isnull().sum())
 
-
 # Numpy on merged dataframes
 arr = data.to_numpy()
 columns = ['EmployeeID', 'JobInvolvement', 'PerformanceRating',
@@ -153,7 +151,7 @@ np_dataframe = np.array(dataframe)
 print(type(np_dataframe))
 
 # Matplotlib and Seaborn Graphs
-# Attrition by Gender
+# Attrition by Gender: Figure 1.1
 sns.set_style("whitegrid")
 sns.set_palette("muted")
 fig, ax = plt.subplots()
@@ -165,14 +163,14 @@ ax.set(title="Attrition by Gender")
 plt.show()
 plt.close()
 
-# Attrition by Age
+# Attrition by Age: Figure 1.2
 fig, ax = plt.subplots()
 sns.violinplot(y='Age',x='Attrition',data=data)
 ax.set(title="Attrition by Age")
 plt.show()
 plt.close()
 
-# Attrition by Demographics
+# Attrition by Demographics: Figure 1.3
 fig, ax = plt.subplots()
 sns.set_palette("Set2")
 demographics = sns.catplot(x="Gender",
@@ -181,7 +179,7 @@ demographics = sns.catplot(x="Gender",
 demographics.fig.suptitle("Attrition by Demographics")
 plt.show()
 
-# Attrition by Business Travel
+# Attrition by Business Travel: Figure 1.4
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="BusinessTravel")
 Business_Travel = ax.set(title="Attrition by Business Travel")
@@ -191,7 +189,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Department
+# Attrition by Department: Figure 1.5
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="Department")
 Business_Travel = ax.set(title="Attrition by Department")
@@ -201,7 +199,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Education Level
+# Attrition by Education Level: Figure 1.6
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationLevel")
 Business_Travel = ax.set(title="Attrition by Education Level")
@@ -211,7 +209,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Education field
+# Attrition by Education field: Figure 1.7
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EducationField")
 Business_Travel = ax.set(title="Attrition by Education Field")
@@ -221,7 +219,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Job Role
+# Attrition by Job Role: Figure 1.8
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobRole")
 Business_Travel = ax.set(title="Attrition by Job Role")
@@ -231,35 +229,35 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition Levels from Years at Company
+# Attrition Levels from Years at Company: Figure 1.9
 fig, ax = plt.subplots()
 ax.set(title="Attrition by Years at Company")
 sns.violinplot(y='YearsAtCompany',x='Attrition',data=data)
 plt.show()
 plt.close
 
-# Attrition Levels from Training Since Last Year
+# Attrition Levels from Training Since Last Year: Figure 1.10
 fig, ax = plt.subplots()
 ax.set(title="Attrition by Training Times Last Year")
 sns.violinplot(y="TrainingTimesLastYear",x='Attrition',data=data)
 plt.show()
 plt.close
 
-# Attrition Levels from Years with Current Manager
+# Attrition Levels from Years with Current Manager: Figure 1.11
 fig, ax = plt.subplots()
 ax.set(title="Attrition by Years with Current Manager")
 sns.violinplot(y="YearsWithCurrManager",x='Attrition',data=data)
 plt.show()
 plt.close
 
-# Attrition Levels from Years Since Last Promotion
+# Attrition Levels from Years Since Last Promotion: Figure 1.12
 fig, ax = plt.subplots()
 ax.set(title="Attrition by Years Since Last Promotion")
 sns.violinplot(y="YearsSinceLastPromotion",x='Attrition',data=data)
 plt.show()
 plt.close
 
-# Attrition by Environment Satisfaction
+# Attrition by Environment Satisfaction: Figure 1.13
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="EnvironmentSatisfaction")
 Business_Travel = ax.set(title="Attrition by Environment Satisfaction")
@@ -269,7 +267,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Job Satisfaction
+# Attrition by Job Satisfaction: Figure 1.14
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobSatisfaction")
 Business_Travel = ax.set(title="Attrition by Job Satisfaction")
@@ -279,7 +277,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by WorkLife Balance
+# Attrition by WorkLife Balance: Figure 1.15
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="WorkLifeBalance")
 Business_Travel = ax.set(title="Attrition by Worklife Balance")
@@ -289,7 +287,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Job Involvement
+# Attrition by Job Involvement: Figure 1.16
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="JobInvolvement")
 Business_Travel = ax.set(title="Attrition by Job Involvement")
@@ -299,7 +297,7 @@ for p in ax.patches:
 plt.show()
 plt.close()
 
-# Attrition by Performance Rating
+# Attrition by Performance Rating: Figure 1.17
 fig, ax = plt.subplots()
 Business_Travel = sns.countplot(x="Attrition",data=data,hue="PerformanceRating")
 Business_Travel = ax.set(title="Attrition by Performance Rating")
